@@ -30,8 +30,14 @@ protected:
 	virtual int h1(K key) = 0;
 	virtual int h2(K key) = 0;
 public:
-	HashTable(int m = 10);
-	~HashTable();
+	HashTable(int m = 10) {
+		size = m;
+		Item<T, K>* = null;
+	}
+	~HashTable() {
+		size = 0;
+		Item<T, K>* = null;
+	}
 	void add(K& key, T& dat);
 	int remove(K key);
 	int search(K key);
