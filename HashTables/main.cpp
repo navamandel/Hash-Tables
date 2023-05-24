@@ -1,5 +1,5 @@
 /*
-* Rachel Wolfe  and Nava Mandel 582813107
+* Rachel Wolfe 337816656 and Nava Mandel 582813107
 * Data Structures II, Homework 2
 */
 
