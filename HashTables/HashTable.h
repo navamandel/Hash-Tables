@@ -61,7 +61,7 @@ public:
 	void add(K& key, T& dat) {
 		for (int i = 0; i < size; i++) {
 			int index = hash(key, i);    //finds the index using the hash function
-			if (arr[index].state != full) {    //makes sure place is not already taken
+			if (arr[index].flag != full) {    //makes sure place is not already taken
 				arr[index] = new Item(dat, key, full);
 			}
 		}
@@ -70,7 +70,7 @@ public:
 	//Removes existing entry from the table
 	int remove(K key) {
 		if (search(key) != -1) {
-			arr[search(key)].state = deleted;
+			arr[search(key)].flag = deleted;
 			return 1
 		}
 		return -1
