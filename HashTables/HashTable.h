@@ -11,32 +11,30 @@ class HashTable
 protected:
 
 	enum state { empty, full, deleted };
-	template <typename U, typename V>
+	template <class T, class K>
 	class Item
 	{
 	public:
-		U data;
-		V key;
+		T data;
+		K key;
 		state flag;
 		Item() {}
-		Item(U d, V  k, state f) { data = d; key = k; flag = f; }
+		Item(T d, K  k, state f) { data = d; key = k; flag = f; }
 	};
 
 
 	int size;
 	Item<T, K>* arr;
-	bool prime(int n);
+	bool prime(int n) {}
 	int hash(K key, int i);
 	virtual int h1(K key) = 0;
 	virtual int h2(K key) = 0;
 public:
 	HashTable(int m = 10) {
-		size = m;
-		Item<T, K>* = null;
+		
 	}
 	~HashTable() {
-		size = 0;
-		Item<T, K>* = null;
+		delete[] arr;
 	}
 	void add(K& key, T& dat);
 	int remove(K key);
