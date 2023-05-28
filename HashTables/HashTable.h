@@ -55,11 +55,25 @@ public:
 	~HashTable() {
 		delete[] arr;
 	}
-	void add(K& key, T& dat);
-	int remove(K key);
+	void add(K& key, T& dat) {
+		for (int i = 0; i < size; i++) {
+			int index = hash(key, i);
+			if (arr[index].state != full) {
+				arr[index] = new Item(dat, key, full);
+			}
+		}
+	}
+	int remove(K key) {
+		if (search(key) != -1) {
+			arr[search(key)].state = deleted;
+			return 1
+		}
+		return -1
+
+	}
 	int search(K key)
 	{
-		for ()
+		for (int i = 0; i<size; i++)
 		{
 			if (arr[i].key == key)
 			{
@@ -77,5 +91,9 @@ public:
 		else
 			return &(arr[ind].data);
 	}
-	void print();
+	void print() {
+		for (int i = 0; i < size; i++) {
+			cout << arr[i].key << "   " << arr[i].data << endl;
+		}
+	}
 };
