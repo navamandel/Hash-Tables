@@ -42,7 +42,8 @@ protected:
 	virtual int h1(K key) = 0;	//position in table
 	virtual int h2(K key) = 0;	//step size for probing
 public:
-	HashTable(int m = 10) {
+
+	HashTable(int m = 10) {     //ctor
 		while (!prime(m)) { m++; }	//increments m until it is prime
 		size = m;
 		arr = new Item<T, K>[size];
@@ -52,17 +53,21 @@ public:
 		}
 	}
 
-	~HashTable() {
+	~HashTable() {    //dtor
 		delete[] arr;
 	}
+
+	//Adds a new entry to the table
 	void add(K& key, T& dat) {
 		for (int i = 0; i < size; i++) {
-			int index = hash(key, i);
-			if (arr[index].state != full) {
+			int index = hash(key, i);    //finds the index using the hash function
+			if (arr[index].state != full) {    //makes sure place is not already taken
 				arr[index] = new Item(dat, key, full);
 			}
 		}
 	}
+
+	//Removes existing entry from the table
 	int remove(K key) {
 		if (search(key) != -1) {
 			arr[search(key)].state = deleted;
@@ -71,6 +76,8 @@ public:
 		return -1
 
 	}
+
+	//Serches for an entry for any given key and returns the position in the table
 	int search(K key)
 	{
 		for (int i = 0; i < size; i++)
@@ -83,10 +90,12 @@ public:
 		}
 	}
 
+	//Updates the data of the entry
 	void update(T curr) {
 		data = curr;
 	}
 
+	//Returns the point of the data
 	T* entryData(K i)
 	{
 		int ind = search(i);
@@ -95,6 +104,8 @@ public:
 		else
 			return &(arr[ind].data);
 	}
+
+	//Prints the contents of the table
 	void print() {
 		for (int i = 0; i < size; i++) {
 			cout << arr[i].key << "   " << arr[i].data << endl;
