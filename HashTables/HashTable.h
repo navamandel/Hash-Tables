@@ -73,7 +73,7 @@ public:
 	}
 	int search(K key)
 	{
-		for (int i = 0; i<size; i++)
+		for (int i = 0; i < size; i++)
 		{
 			if (arr[i].key == key)
 			{
@@ -81,6 +81,10 @@ public:
 			}
 			else { return -1; }
 		}
+	}
+
+	void update(T curr) {
+		data = curr;
 	}
 
 	T* entryData(K i)
