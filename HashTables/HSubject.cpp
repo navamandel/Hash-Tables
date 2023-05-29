@@ -8,12 +8,12 @@ void HSubject::printS(string ky) {
 	
 	int i = search(ky);
 	if (i == -1)
-		cout << "Key not found\n";
+		cout << "Error\n";
 	
 	else
 	{
-		cout << "Subject = " << arr[i].key << " "
-			<< arr[i].data.size() << " Titles: \n";
+		cout << "Subject " << arr[i].key << " "
+			<< arr[i].data.size() << " topics: \n";
 		printD(arr[i]);
 	}
 }
@@ -22,7 +22,7 @@ void HSubject::printN(string ky, int N) {
 
 	int index = search(ky);
 	if (index == -1)
-		cout << "Key not found\n";
+		cout << "Error\n";
 	
 	else
 	{
@@ -45,7 +45,7 @@ void HSubject::printD(Item<list<string>, string> d)
 
 void HSubject::print() {
 
-	cout << "All Entries: \n";
+	cout << "All subjects and titles: \n";
 
 	int count = 0;
 	vector<string> strings;

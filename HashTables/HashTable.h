@@ -7,22 +7,21 @@
 using namespace std;
 
 
-
-template <class T, class K>
+template <typename T, typename K>
 class HashTable
 {
 protected:
 
 	enum state { empty, full, deleted };
-	template <class T, class K>
+	template <typename U, typename V>
 	class Item
 	{
 	public:
-		T data;
-		K key;
+		U data;
+		V key;
 		state flag;
 		Item() {}
-		Item(T d, K  k, state f) { data = d; key = k; flag = f; }
+		Item(U d, V  k, state f) { data = d; key = k; flag = f; }
 	};
 
 	int size;
@@ -35,6 +34,7 @@ protected:
 			if (n % i == 0)
 				return false;
 		}
+		return true;
 	}
 
 	int hash(K key, int i)
@@ -81,7 +81,6 @@ public:
 			return 1;
 		}
 		return -1;
-
 	}
 
 	//Serches for an entry for any given key and returns the position in the table
@@ -95,6 +94,7 @@ public:
 			else
 				return -1;
 		}
+		return -1;
 	}
 
 	//Updates the data of the entry
