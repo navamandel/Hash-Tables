@@ -1,6 +1,9 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
+#include <list>
 using namespace std;
 
 
@@ -60,9 +63,13 @@ public:
 	//Adds a new entry to the table
 	void add(K& key, T& dat) {
 		for (int i = 0; i < size; i++) {
-			int index = hash(key, i);    //finds the index using the hash function
-			if (arr[index].flag != full) {    //makes sure place is not already taken
-				arr[index] = new Item(dat, key, full);
+			int index = hash(key, i);		//finds the index using the hash function
+			if (arr[index].flag != full)
+			{								//makes sure place is not already taken
+				arr[index].flag = full;
+				arr[index].key = key;
+				arr[index].data = dat;
+				return;
 			}
 		}
 	}
@@ -71,9 +78,9 @@ public:
 	int remove(K key) {
 		if (search(key) != -1) {
 			arr[search(key)].flag = deleted;
-			return 1
+			return 1;
 		}
-		return -1
+		return -1;
 
 	}
 
@@ -82,11 +89,11 @@ public:
 	{
 		for (int i = 0; i < size; i++)
 		{
-			if (arr[i].key == key)
-			{
-				return h1(key);
-			}
-			else { return -1; }
+			int index = hash(key, i);
+			if (arr[index].flag == full && arr[index].key == key)
+				return index;
+			else
+				return -1;
 		}
 	}
 
